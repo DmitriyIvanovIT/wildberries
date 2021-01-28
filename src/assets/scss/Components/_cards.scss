@@ -1,0 +1,111 @@
+.card {
+    min-height: 370px;
+    padding: 60px 46px 80px 46px;
+    border-radius: 10px;
+
+    &-1 {
+        background: #e3e2e3 url(../images/card-image/card-image-1.jpg) no-repeat top right;
+        background-size: cover;
+    }
+
+    &-2 {
+        background: #000 url(../images/card-image/card-image-2.jpg) no-repeat top right;
+        background-size: cover;
+    }
+
+    &-3 {
+        padding-top: 35px;
+        padding-bottom: 60px;
+        background: #CCD5E6 url(../images/card-image/card-image-3-1.png) no-repeat top right 15%;
+
+        button {
+            max-width: 160px;
+            transition: .2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &-4 {
+        padding-top: 35px;
+        padding-bottom: 60px;
+        padding-left: 25px;
+        background: #FF4F52 url(../images/card-image/card-image-4.png) no-repeat top right;
+
+        & .card-title {
+            margin-bottom: 10px;
+        }
+
+        & .card-text {
+            margin-bottom: 15px;
+        }
+
+    }
+}
+
+.card-title {
+    max-width: 222px;
+    font-family: 'Roboto Slab', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    color: #262D33;
+
+    &.large {
+        max-width: 420px;
+        font-size: 40px;
+        line-height: 50px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+.card-text {
+    max-width: 175px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4B5157;
+    margin-bottom: 25px;
+
+    &.large {
+        max-width: 320px;
+        margin-bottom: 40px;
+    }
+}
+
+.card-button {
+    padding: 10px 20px;
+    max-width: 120px;
+    transition: .2s;
+
+    .button-text {
+        &:before {
+            display: none;
+        }
+
+        &:after {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: -1px;
+            content: url(../images/arrow-btn.svg);
+            margin-left: 5px;
+        }
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.card-price {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}

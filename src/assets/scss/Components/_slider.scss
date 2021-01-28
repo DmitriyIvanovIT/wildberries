@@ -1,0 +1,93 @@
+.slider {
+    position: relative;
+}
+
+.slide {
+    padding-top: 90px;
+    padding-bottom: 110px;
+
+    &-1 {
+        background: #b4d1e0 url(../images/slider/slide-image-1.png) no-repeat top right;
+    }
+}
+
+.label {
+    background: #3DC47E;
+    border-radius: 3px;
+    padding: 5px 12px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 15px;
+    max-width: 77px;
+}
+
+.slide-title {
+    font-family: 'Roboto Slab', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 55px;
+    line-height: 70px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #262D33;
+}
+
+.slide-description {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    color: #4B5157;
+    max-width: 335px;
+    margin-bottom: 40px;
+}
+
+.slide-button {
+    .button-text {
+        &::before {
+            display: none;
+        }
+    }
+}
+
+.button-price {
+    margin-right: 10px;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.slider-button {
+    cursor: pointer;
+    opacity: .5;
+    transition: .2s;
+
+    svg {
+        width: 60px;
+        height: 60px;
+        fill: #fff;
+    }
+
+    &:hover {
+        opacity: 1;
+        svg {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.slider-button-next {
+    svg {
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+
+        svg {
+            transform: rotate(180deg) scale(1.1);
+        }
+    }
+}
