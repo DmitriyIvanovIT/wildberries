@@ -156,13 +156,13 @@ navigationLink.forEach(link => link.addEventListener('click', e => {
 
 cardOne.addEventListener('click', e => {
 	if (e.target.closest('.button')) {
-		sectionTitle.textContent = 'Clothing';
-		filterCards('category', 'Clothing');
+		sectionTitle.textContent = 'Accessories';
+		filterCards('category', 'Accessories');
 	}
 })
 cardTwo.addEventListener('click', e => {
 	if (e.target.closest('.button')) {
-		sectionTitle.textContent = 'Accessories';
-		filterCards('category', 'Accessories');
+		sectionTitle.textContent = 'Clothing';
+		filterCards('category', 'Clothing');
 	}
 })
