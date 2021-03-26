@@ -14,6 +14,7 @@ const buttonCart = document.querySelector('.button-cart'),
 	modalCart = document.getElementById('modal-cart');
 
 const openModal = () => {
+		cart.renderCart();
 		modalCart.classList.add('show');
 	},
 	closeModal = () => {
@@ -159,10 +160,117 @@ cardOne.addEventListener('click', e => {
 		sectionTitle.textContent = 'Accessories';
 		filterCards('category', 'Accessories');
 	}
-})
+});
+
 cardTwo.addEventListener('click', e => {
 	if (e.target.closest('.button')) {
 		sectionTitle.textContent = 'Clothing';
 		filterCards('category', 'Clothing');
 	}
-})
+});
+
+const cartTableGoods = document.querySelector('.cart-table__goods'),
+	cardTableTotal = document.querySelector('.card-table__total'),
+	addToCart = document.querySelectorAll('.add-to-cart');
+
+const cart = {
+	cartGoods: [],
+	renderCart() {
+		cartTableGoods.textContent = '';
+
+		if (this.cartGoods.length > 0) {
+			this.cartGoods.forEach(({
+				id,
+				name,
+				price,
+				count
+			}) => {
+				cartTableGoods.insertAdjacentHTML('beforeend', `
+					<tr class="cart-item" data-id="${id}">
+						<td>${name}</td>
+						<td>${price}$</td>
+						<td><button class="cart-btn-minus">-</button></td>
+						<td>${count}</td>
+						<td><button class="cart-btn-plus">+</button></td>
+						<td>${price * count}$</td>
+						<td><button class="cart-btn-delete">x</button></td>
+					</tr>
+				`);
+			});
+		}
+
+		const totalPrice = this.cartGoods.reduce((sum, {
+			price,
+			count
+		}) => sum += price * count, 0);
+		cardTableTotal.textContent = `${totalPrice}$`;
+	},
+	deleteGood(id) {
+		this.cartGoods = this.cartGoods.filter(good => good.id !== id);
+		this.renderCart();
+	},
+	minusGood(id) {
+		for (const good of this.cartGoods) {
+			if (good.id === id) {
+				if (good.count <= 1) {
+					this.deleteGood(good.id);
+				} else {
+					good.count--;
+				}
+				break;
+			}
+		}
+
+		this.renderCart();
+	},
+	plusGood(id) {
+		for (const good of this.cartGoods) {
+			if (good.id === id) {
+				good.count++;
+				break;
+			}
+		}
+
+		this.renderCart();
+	},
+	addCartGoods(id) {
+		if (this.cartGoods.some(item => item.id === id)) {
+			this.plusGood(id);
+		} else {
+			getGoods()
+				.then(data => data.find(item => item.id === id))
+				.then(({ name, price }) => {
+					this.cartGoods.push({
+						id,
+						name,
+						price,
+						count: 1,
+					})
+				});
+		}
+		this.renderCart();
+	}
+};
+
+cartTableGoods.addEventListener('click', e => {
+	const target = e.target;
+
+	if (target.tagName === "BUTTON") {
+		const goodId = target.closest('.cart-item').dataset.id;
+
+		if (target.classList.contains('cart-btn-delete')) {
+			cart.deleteGood(goodId);
+		}
+
+		if (target.classList.contains('cart-btn-minus')) {
+			cart.minusGood(goodId);
+		}
+		if (target.classList.contains('cart-btn-plus')) {
+			cart.plusGood(goodId);
+		}
+	}
+});
+
+addToCart.forEach(btn => btn.addEventListener('click', () => {
+	cart.addCartGoods(btn.dataset.id);
+}))
