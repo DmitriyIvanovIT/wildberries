@@ -1,0 +1,20 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+button {
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+@import 'Components/header';
+@import 'Components/slider';
+@import 'Components/cards';
